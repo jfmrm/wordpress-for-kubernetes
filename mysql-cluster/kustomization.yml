@@ -1,0 +1,15 @@
+namespace: mysql-cluster
+resources:
+  - namespace.yaml
+  - cluster-role-binding.yaml
+  - service-account.yaml
+  - persistant-volume.yml
+  - deployment.yml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: db-password
+    literals:
+      - password=some_password
