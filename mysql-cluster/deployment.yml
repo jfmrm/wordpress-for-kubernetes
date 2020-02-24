@@ -2,10 +2,14 @@ apiVersion: mysql.oracle.com/v1alpha1
 kind: Cluster
 metadata:
   name: mysql-wordpress
+  labels:
+    app: mysql-wordpress
 spec:
   members: 1
   rootPasswordSecret:
     name: db-password
+  config:
+    name: myconf
   volumeClaimTemplate:
     metadata:
       name: data

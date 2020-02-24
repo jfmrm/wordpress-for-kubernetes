@@ -4,7 +4,10 @@ resources:
   - cluster-role-binding.yaml
   - service-account.yaml
   - persistant-volume.yml
+  - configmap.yml
   - deployment.yml
+  - mysql-router-deployment.yaml
+  - mysql-router-service.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
