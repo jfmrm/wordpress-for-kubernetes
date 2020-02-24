@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-test
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
+    nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
+    nginx.ingress.kubernetes.io/fastcgi-params-configmap: "ingress-config"
+spec:
+  # tls:
+  #   - hosts:
+  #     - foo.bar.com
+  #     # This assumes tls-secret exists and the SSL
+  #     # certificate contains a CN for foo.bar.com
+  #     secretName: tls-secret
+  rules:
+    - host: wordpress.test
+      http:
+        paths:
+        - path: /
+          backend:
+            # This assumes http-svc exists and routes to healthy endpoints
+            serviceName: wordpress
+            servicePort: 80

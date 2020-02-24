@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    type: local
+  name: wordpress
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 500Mi
+  hostPath:
+    path: /var/www/html
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: manual
