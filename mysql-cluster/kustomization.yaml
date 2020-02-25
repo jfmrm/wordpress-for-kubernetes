@@ -1,13 +1,11 @@
 namespace: mysql-cluster
 resources:
   - namespace.yaml
-  - cluster-role-binding.yaml
-  - service-account.yaml
-  - persistant-volume.yml
-  - configmap.yml
-  - deployment.yml
-  - mysql-router-deployment.yaml
-  - mysql-router-service.yaml
+  - persistent-volume.yaml
+  - persistent-volume-claim.yaml
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
