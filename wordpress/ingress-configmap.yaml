@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: ingress-config
 data:
-  SCRIPT_FILENAME: "/var/www/html/index.php"
+  SCRIPT_FILENAME: "/var/www/html$fastcgi_script_name"

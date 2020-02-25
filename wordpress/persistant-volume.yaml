@@ -10,6 +10,6 @@ spec:
   capacity:
     storage: 500Mi
   hostPath:
-    path: /var/www/html
+    path: /tmp
   persistentVolumeReclaimPolicy: Delete
   storageClassName: manual

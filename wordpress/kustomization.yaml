@@ -3,8 +3,6 @@ resources:
   - namespace.yaml
   - persistant-volume.yaml
   - persistant-volume-claim.yaml
-  - service-account.yaml
-  - cluster-role-binding.yaml
   - deployment.yaml
   - service.yaml
   - ingress-configmap.yaml

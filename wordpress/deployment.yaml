@@ -17,10 +17,10 @@ spec:
             claimName: wordpress-claim
       containers:
         - name: wordpress
-          image: wordpress:5.3.2-php7.2-fpm
+          image: wordpress:php7.4-fpm
           env:
             - name: WORDPRESS_DB_HOST
-              value: mysql-router.mysql-cluster.svc.cluster.local:6446
+              value: mysql-wordpress.mysql-cluster.svc.cluster.local:3306
             - name: WORDPRESS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
