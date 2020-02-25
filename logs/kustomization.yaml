@@ -1,0 +1,6 @@
+namespace: elk
+resources:
+  - namespace.yaml
+  - elasticsearch-deployment.yaml
+  - kibana-deployment.yaml
+  - kibana-ingress.yaml
