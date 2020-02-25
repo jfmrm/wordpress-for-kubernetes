@@ -1,0 +1,13 @@
+namespace: ingress-controller
+resources:
+  - namespace.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - controller-role.yaml
+  - controller-rolebinding.yaml
+  - controller-serviceaccount.yaml
+  - controller-deployment.yaml
+  - controller-service.yaml
+  - default-backend-serviceaccount.yaml
+  - default-backend-deployment.yaml
+  - default-backend-service.yaml
