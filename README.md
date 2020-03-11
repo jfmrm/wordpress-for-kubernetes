@@ -13,6 +13,54 @@ Com um pocuo mais de tempo estruturando poderiamos chegar ao ponto de executar: 
 
 Poderíamos ainda replicar esse ambiente com pouquíssimo esforço usando o conceito do kustomize de overlays.
 
+### Executando o projeto
+
+O projeto foi executado no AKS com a versão do kubernetes 1.14.8.
+
+NOTE: todos os comandos assumem que vocês está na pasta raiz do projeto.
+
+Primeiramente instale o ingress controller executando:
+```
+kubectl -k ingress-controller
+```
+
+Agora vamos levantar o banco MySQL
+```
+kubectl -k mysql-cluster
+```
+
+NOTE: essa foi a única parte que não foi possível usar o kustomize. Por algum motivo desconhecido o deployment não consegue completar pela falta de um secret quando é rodado pelo kustomize. Há alguns issues relacionados sem solução.
+
+E agora instalar o cert manager (a flag validate=false foi usada porque nos manifestos de deployment oficiais dele está com problema de compatibilidade com versões anteriores a 1.15.6, mas não é um problema quebrante).
+```
+ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.13.1/cert-manager.yaml
+```
+
+Para criar um certificate issuer:
+```
+kubectl -k cert-manager
+```
+
+Edite o arquivo `ingress.yaml` e substitua o host por um domínio que você tenha acesso de administrador, depois crie um A record para ele apontando para o IP externo do balanceador de carga do congress controller. Você pode verificar isso executando:
+```
+kubectl get svc -n ingress-controller
+```
+
+Agora podemos criar nosso wordpress com HTTPS:
+```
+kubectl -k wordpress
+```
+
+A infra de logs pode ser criada primeiro instalando o elk-operator:
+```
+kubectl -k elk-operator
+```
+
+E depois execuntando:
+```
+kubectl -k logs
+```
+
 ### Wordpress
 
 Para o Wordpress foi escolhida a imagem do Dockerhub `wordpress:php7.4-fpm`, por ser a versão mais nova com FPM. A versão Alpine não foi utilizada por motivos de não haver uma boa manutenção na imagem, o que poderia abrir brechas de segurança na imagem.
