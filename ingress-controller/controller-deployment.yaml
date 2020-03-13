@@ -33,7 +33,7 @@ spec:
       containers:
         - name: nginx-ingress-controller
           image: "quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.30.0"
-          imagePullPolicy: "IfNotPresent"
+          imagePullPolicy: "Always"
           args:
             - /nginx-ingress-controller
             - --default-backend-service=ingress-controller/nginx-nginx-ingress-default-backend
